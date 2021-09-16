@@ -14,9 +14,6 @@ public class RegistrationController {
     @Autowired
     private RegistrationService registrationService;
 
-    @Autowired
-    private UserCreatedSubscriber userCreatedSubscriber;
-
     @PostMapping("/register")
     public void register(@RequestBody UserDto userDto) throws MessagingException {
         registrationService.register(userDto);
