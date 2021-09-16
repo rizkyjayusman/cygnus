@@ -2,6 +2,7 @@ package com.cygnus.app.serviceImpl;
 
 import com.cygnus.app.dto.EmailConfirmDto;
 import com.cygnus.app.dto.UserDto;
+import com.cygnus.app.publisher.UserCreatedPublisher;
 import com.cygnus.app.service.EmailService;
 import com.cygnus.app.service.RegistrationMailService;
 import com.cygnus.app.service.RegistrationService;
@@ -19,16 +20,11 @@ public class RegistrationServiceImpl implements RegistrationService {
     private UserService userService;
 
     @Autowired
-    private RegistrationMailService registrationMailService;
+    private UserCreatedPublisher userCreatedPublisher;
 
     @Override
     public void register(UserDto userDto) throws MessagingException {
         userService.createUser(userDto);
-
-        EmailConfirmDto emailConfirmDto = new EmailConfirmDto();
-        emailConfirmDto.setEmail(userDto.getEmail());
-        emailConfirmDto.setToken(EmailConfirmTokenUtil.generate());
-
-        registrationMailService.sendEmailConfirmationMail(emailConfirmDto);
+        userCreatedPublisher.push(userDto);
     }
 }
