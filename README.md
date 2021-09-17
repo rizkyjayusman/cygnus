@@ -1,12 +1,8 @@
 # Introduction
 
-___ 
-
 An application that i created for my self-study that has a registration feature with email confirmation with many approaches applied.
 
 # Tech Stack
-
-___ 
 
 I used these tech stack for create this project with:
 * Java 8
@@ -16,7 +12,6 @@ I used these tech stack for create this project with:
 * [Kafka](https://kafka.apache.org/) (for event-driven)
 
 # Architecture
-___
 
 ## Registration Flow - Synchronous Approach
 
@@ -50,7 +45,6 @@ Detail : [Click Here](https://github.com/rizkyjayusman/cygnus/tree/approach/data
 
 # Build and Run
 
-___ 
 
 ```
 1. Clone the Project
