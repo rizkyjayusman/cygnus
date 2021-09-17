@@ -1,11 +1,10 @@
 package com.cygnus.app.subscriber;
 
-import com.cygnus.app.dto.EmailConfirmDto;
-import com.cygnus.app.dto.UserDto;
-import com.cygnus.app.service.RegistrationMailService;
-import com.cygnus.app.util.EmailConfirmTokenUtil;
+import com.cygnus.app.base.service.KafkaConsumerService;
+import com.cygnus.app.service.RegistrationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
@@ -15,20 +14,14 @@ import javax.mail.MessagingException;
 public class UserCreatedSubscriber {
 
     @Autowired
-    private RegistrationMailService registrationMailService;
+    private KafkaConsumerService kafkaConsumerService;
 
-    public void listen(String email) throws MessagingException {
-        // TODO listen user creation
-        UserDto userDto = new UserDto();
-        userDto.setEmail(email);
+    @Autowired
+    private RegistrationService registrationService;
 
-        log.info("RETRIEVE USER CREATION EVENT");
-
-        EmailConfirmDto emailConfirmDto = new EmailConfirmDto();
-        emailConfirmDto.setEmail(userDto.getEmail());
-        emailConfirmDto.setToken(EmailConfirmTokenUtil.generate());
-
-        registrationMailService.sendEmailConfirmationMail(emailConfirmDto);
+    @KafkaListener(topics = "user_created", groupId = "group_id")
+    public void listenUserCreated(String email) throws MessagingException {
+        registrationService.sendVerificationMail(email);
     }
 
 }

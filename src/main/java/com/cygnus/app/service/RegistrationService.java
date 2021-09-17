@@ -8,4 +8,6 @@ public interface RegistrationService {
 
     void register(UserDto userDto) throws MessagingException;
 
+    void sendVerificationMail(String email) throws MessagingException;
+
 }

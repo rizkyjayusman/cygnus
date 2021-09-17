@@ -20,11 +20,20 @@ public class RegistrationServiceImpl implements RegistrationService {
     private UserService userService;
 
     @Autowired
+    private RegistrationMailService registrationMailService;
+
+    @Autowired
     private UserCreatedPublisher userCreatedPublisher;
 
     @Override
     public void register(UserDto userDto) throws MessagingException {
         userService.createUser(userDto);
         userCreatedPublisher.push(userDto);
+    }
+
+    @Override
+    public void sendVerificationMail(String email) throws MessagingException {
+        EmailConfirmDto emailConfirmDto = EmailConfirmDto.create(email, EmailConfirmTokenUtil.generate());
+        registrationMailService.sendEmailConfirmationMail(emailConfirmDto);
     }
 }

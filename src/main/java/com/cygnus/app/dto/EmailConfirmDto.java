@@ -10,4 +10,11 @@ public class EmailConfirmDto {
 
     private String token;
 
+    public static EmailConfirmDto create(String email, String token) {
+        EmailConfirmDto emailConfirmDto = new EmailConfirmDto();
+        emailConfirmDto.setEmail(email);
+        emailConfirmDto.setToken(token);
+        return emailConfirmDto;
+    }
+
 }
