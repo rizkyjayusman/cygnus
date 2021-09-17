@@ -15,8 +15,6 @@ I used these tech stack for create this project with:
 
 ## Registration Flow - Event Driven Approach
 
-Detail : [Click Here](https://github.com/rizkyjayusman/cygnus/tree/approach/event-driven-approach)
-
 <div align='center'>
 
 ![Registration Flow - Event Driven Approach](docs/event-driven-approach.png)
