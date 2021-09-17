@@ -1,6 +1,6 @@
 # Introduction
 
-An application that i created for my self-study that has a registration feature with email confirmation with many approaches applied.
+Cygnus is an application that i created for my self-study that has a registration feature with email confirmation with many approaches applied.
 
 # Tech Stack
 
